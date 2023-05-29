@@ -1,0 +1,16 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h1 class="nav-txt">Create Shop</h1>
+<h3 class="nav-txt">Here you can create a shop!</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <li class="field-label">{{field.label}}</li>
+        <li class="field-label">{{field}}</li>
+    {% endfor %}
+    <input type="submit" value="Create Shop">
+</form>
+<a class="foot-btn" href=" {% url 'artist-view-shops' %} ">View Shops</a>
+    <a class="foot-btn" href=" {% url 'artist-view-requests' %} ">View Requests</a>
+{% endblock content %}

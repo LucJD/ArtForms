@@ -1,0 +1,29 @@
+
+{% extends 'navbar.html' %}
+{% block content %}
+<h1 class="nav-txt">Login</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+
+        <li class="field-label">{{field.label}}</li>
+        <li class="field-label">{{field}}</li>
+    {% endfor %}
+    
+    <input type="submit" value="Login">
+</form>
+<div class="sep">
+{% if form.errors %}
+    <li class="field-label white small-white">{{form.errors}}</li>
+{% endif %}
+
+</div>
+
+<div class = "sep">
+{% for message in messages %}
+    <li class="field-label white small-white">{{message}}</li>
+{% endfor %}
+</div>
+
+<p class="white"><a href="{% url 'register' %}">Create an Account</a></p>
+{% endblock content %}

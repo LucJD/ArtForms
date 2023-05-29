@@ -1,0 +1,9 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h1 class="login-msg nav-txt"> Welcome, {{request.user}}</h1>
+<h3 class="login-msg nav-txt">Would you like to...</h3>
+
+<p class="home-select"><a href=" {% url 'artist-view-shops' %} ">View Shops</a></p>
+<p class="home-select"><a href=" {% url 'artist-add-shop' %} ">Add Shops</a></p>
+<p class="home-select"><a href=" {% url 'artist-view-requests' %}">View Requests</a></p>
+{% endblock content %}

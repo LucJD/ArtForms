@@ -1,0 +1,10 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<h1 class="login-msg nav-txt">Welcome, {{request.user}}</h1>
+<h3 class="login-buff nav-txt">Would you like to...</h3>
+
+<p class="home-select"><a  href=" {% url 'client-view-requests' %} ">View All Of Your Requests</a></p>
+<p class="home-select"><a href=" {% url 'client-view-artists' %} ">View All Artists and Their Shops</a></p>
+
+{% endblock content %}

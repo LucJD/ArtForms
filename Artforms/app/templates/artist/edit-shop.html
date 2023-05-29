@@ -1,0 +1,29 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<h1 class = "nav-txt">Edit Shop</h1>
+<div class="white small-white">
+<p>Title: {{shop.title}}</p>
+<p>Description: {{shop.description}}</p>
+<p>Turnover: {{shop.turnover}}</p>
+<p>Base Price: ${{shop.base_price}}</p>
+</div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <li class="field-label">{{field.label}}</li>
+            <li class="field-label">{{field}}</li>
+        {% endfor %}
+        <input type="submit" value="submit">
+    </form>
+    <a class = "foot-btn" href="{% url 'delete-shop' shop.id %}">Delete Shop</a>
+    
+    {% if message %}
+        <li class="field-label white small-white block">{{message}}</li>
+    {% endif %}
+    {% if form.errors %}
+        <li class="field-label white small-white block">{{form.errors}}</li>
+    {% endif %}
+    <a class="foot-btn" href=" {% url 'artist-view-shops' %} ">View Shops</a>
+    <a class="foot-btn" href=" {% url 'artist-view-requests' %} ">View Requests</a>
+{% endblock content %}

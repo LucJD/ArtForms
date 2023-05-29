@@ -1,0 +1,32 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h1 class="nav-txt">Viewing Current Request</h1>
+<div class="white small-white">
+<p>Client: {{current_request.client}}</p>
+<p>Shop: {{current_request.shop.title}}</p>
+<p>Contact Email: {{current_request.contact_email}}</p>
+<p>Description: {{current_request.description}}</p>
+<p>Accepted: {{current_request.accepted}}</p>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="accepted">Accept Commission? </label>
+    <select name="accepted" id="accepted">
+        <option value="Accepted">Accepted</option>
+        <option value="Denied">Denied</option>
+        <option value="Pending">Pending</option>
+    </select>
+    <input type="submit" value="Change Request Status">
+</form>
+
+
+{% if message is not None %}
+<li class="field-label white small-white block">{{message}}</li>
+{% endif %}
+{% if form.errors %}
+    <li class="field-label white small-white block">{{form.errors}}</li>
+{% endif %}
+<a class="foot-btn" href="{% url 'delete-request' current_request.id %}">Delete Request</a>
+<a class="foot-btn" href=" {% url 'artist-view-shops' %} ">View Shops</a>
+<a class="foot-btn" href=" {% url 'artist-view-requests' %} ">View Requests</a>
+{% endblock content %}

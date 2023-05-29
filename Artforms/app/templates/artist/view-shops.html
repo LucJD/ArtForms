@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h1 class="nav-txt">Your Shops</h1>
+{% if not shops %}
+    <p class='white small-white'>Looks like you don't have any shops. <a href="{% url 'artist-add-shop' %}">Create New Shop</a> </p>
+{% endif %}
+{% for shop in shops %}
+<div class="shop-card">
+    <p class="shop-name">{{shop.title}}</p>
+    <p class="shop-desc">{{shop.description}}</p>
+    <p>Turnover: {{shop.turnover}}</p>
+    <p>Base Price: ${{shop.base_price}}</p>
+    <a class="card-btm" href="{%url 'artist-edit-shop' shop.id %}"> Edit This Shop!</a>
+</div>
+
+{% endfor %}
+{% endblock content %}

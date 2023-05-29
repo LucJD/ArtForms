@@ -1,0 +1,17 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<h1 class="nav-txt">Viewing Requests From Clients</h1>
+{% if not requests %}
+    <p class='white small-white'>Looks like you don't have any requests. <a href="{% url 'artist-view-shops' %}">View Shops</a> </p>
+{% endif %}
+{% for request in requests %}
+<div class="shop-card">
+<p>Request from {{request.client}}</p>
+<p class="shop-name">{{request.shop}}</p>
+    <p> Contact Email: {{request.contact_email}}</p>
+    <p class="shop-desc"> Description: {{request.description}}</p>
+    <p class="accepted">{{request.accepted}}</p>
+    <a class="card-btm" href=" {% url 'artist-view-one-request' request.id %} ">View This Request</a>
+</div>
+    {% endfor %}
+{% endblock content %}

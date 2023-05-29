@@ -1,0 +1,28 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+
+<div class="form-block nav-txt">
+    <h3>Create request for the shop <div class="underline">{{shop.title}}</div> by {{shop.artist}}</h3>
+</div>
+
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <li class="field-label">{{field.label}}</li>
+            <li class="field-label">{{field}}</li>
+        {% endfor %}
+        <input type="submit" value="Submit Request">
+    </form>
+    {% if message %}
+        <li class="field-label block white small-white">{{message}}</li>
+    {% endif %}
+
+    {% if form.errors %}
+        <li class="field-label block white small-white">{{form.errors}}</li>
+    {% endif %}
+
+<a class="foot-btn" href=" {% url 'client-view-artists' %} ">View Artists</a>
+<a class="foot-btn" href=" {% url 'client-view-requests' %} ">View Requests</a>
+{% endblock content %}

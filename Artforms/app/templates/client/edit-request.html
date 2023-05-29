@@ -1,0 +1,33 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<h1 class="nav-txt">Edit Your Request</h1>
+<div class='white small-white'>
+<p> Shop: {{current_request.shop.title}} by {{current_request.shop.artist.user}} </p>
+<p> Contact Email: {{current_request.contact_email}} </p>
+<p> Description: {{current_request.description}} </p>
+<p> Accepted: {{current_request.accepted}} </p>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        <li class="field-label">{{field.label}}</li>
+            <li class="field-label">{{field}}</li>
+    {% endfor %}
+    <input type="submit" value="Edit Request">
+</form>
+
+<a class="foot-btn" href="{% url 'delete-request' current_request.id %}">Delete Request</a>
+
+{% if message %}
+<li class="field-label block white small-white">{{message}}</li>
+{% endif %}
+
+{% if form.errors %}
+<li class="field-label block white small-white">{{form.errors}}</li>
+{% endif %}
+
+<a class="foot-btn" href=" {% url 'client-view-artists' %} ">View Artists</a>
+<a class="foot-btn" href=" {% url 'client-view-requests' %} ">View Requests</a>
+
+{% endblock content %}
